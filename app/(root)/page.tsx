@@ -14,6 +14,10 @@ const Home = () => {
       <section className='flex flex-col gap-5'>
         <h1 className="text-20 font-bold text-white-1">Trending Podcasts</h1>
 
+        <p>
+          View the most popular podcasts on the platform right now.
+        </p>
+
         <div className="podcast_grid">
           {trendingPodcasts?.map(({ _id, podcastTitle, podcastDescription, imageUrl }) => (
             <PodcastCard 

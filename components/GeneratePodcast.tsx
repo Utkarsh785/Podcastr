@@ -58,6 +58,9 @@ const useGeneratePodcast = ({
         title: "Podcast generated successfully",
       })
     } catch (error) {
+
+      // console.log(error)
+
       console.log('Error generating podcast', error)
       toast({
         title: "Error creating a podcast",

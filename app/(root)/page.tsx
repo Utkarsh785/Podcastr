@@ -6,6 +6,7 @@ import LoaderSpinner from '@/components/LoaderSpinner';
 
 const Home = () => {
   const trendingPodcasts = useQuery(api.podcasts.getTrendingPodcasts);
+  // const  tasks = useQuery(api.tasks.get);
 
   if(!trendingPodcasts) return <LoaderSpinner />
   
@@ -14,7 +15,7 @@ const Home = () => {
       <section className='flex flex-col gap-5'>
         <h1 className="text-20 font-bold text-white-1">Trending Podcasts</h1>
 
-        <p className='text-orange-900 text-10 '>
+        <p className='text-orange-1 text-10 '>
           View the most popular podcasts on the platform right now.
         </p>
 

@@ -24,7 +24,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
   const handleGenerateThumbnail = useAction(api.openai.generateThumbnailAction)
 
   const handleImage = async (blob: Blob, fileName: string) => {
-    setIsImageLoading(true);
+  
     setImage('');
 
     try {
@@ -49,6 +49,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
 
   const generateImage = async () => {
     try {
+      setIsImageLoading(true);
       const response = await handleGenerateThumbnail({ prompt: imagePrompt });
       const blob = new Blob([response], { type: 'image/png' });
       handleImage(blob, `thumbnail-${uuidv4()}`);
@@ -113,7 +114,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             />
           </div>
           <div className="w-full max-w-[200px]">
-          <Button type="submit" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generateImage}>
+          <Button type="button" className="text-16 bg-orange-1 py-4 font-bold text-white-1" onClick={generateImage}>
             {isImageLoading ? (
               <>
                 Generating
@@ -131,7 +132,10 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             type="file"
             className="hidden"
             ref={imageRef}
-            onChange={(e) => uploadImage(e)}
+            onChange={(e) => {
+              setIsImageLoading(true)
+              uploadImage(e)
+            }}
           />
           {!isImageLoading ? (
             <Image src="/icons/upload-image.svg" width={40} height={40} alt="upload" />
